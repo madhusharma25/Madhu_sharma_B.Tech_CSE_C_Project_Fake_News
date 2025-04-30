@@ -41,8 +41,8 @@ const ChatPage = () => {
     if (!input.trim()) return;
     
     const userMessage: Message = {
-      id: messages.length + 1,
-      text: input,
+      id: Date.now(),
+      text: input.trim(),
       sender: "user",
       timestamp: new Date()
     };
@@ -52,10 +52,12 @@ const ChatPage = () => {
     setIsLoading(true);
     
     try {
+      console.log("Sending message to Gemini API:", input);
       const response = await chatWithGemini(input);
+      console.log("Received response from Gemini API:", response);
       
       const botMessage: Message = {
-        id: messages.length + 2,
+        id: Date.now() + 1,
         text: response,
         sender: "bot",
         timestamp: new Date()
@@ -65,9 +67,23 @@ const ChatPage = () => {
     } catch (error) {
       console.error("Error in chat:", error);
       toast.error("Failed to get a response. Please try again.");
+      
+      // Add error message from bot
+      const errorMessage: Message = {
+        id: Date.now() + 1,
+        text: "I'm sorry, I encountered an error processing your request. Please try again later.",
+        sender: "bot",
+        timestamp: new Date()
+      };
+      
+      setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleSuggestionClick = (suggestion: string) => {
+    setInput(suggestion);
   };
 
   return (
@@ -150,15 +166,15 @@ const ChatPage = () => {
               "Did the government really announce this new policy?",
               "How can I verify if a news story is real?",
               "What are common signs of fake news?"
-            ].map((question, index) => (
+            ].map((suggestion, index) => (
               <Button
                 key={index}
                 variant="outline"
                 className="justify-start h-auto py-2 px-3 text-left"
-                onClick={() => setInput(question)}
+                onClick={() => handleSuggestionClick(suggestion)}
                 disabled={isLoading}
               >
-                {question}
+                {suggestion}
               </Button>
             ))}
           </div>

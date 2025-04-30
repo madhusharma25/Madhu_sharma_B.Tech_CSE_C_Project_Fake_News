@@ -51,6 +51,8 @@ const interpretResponse = (rawText: string): GeminiResponse => {
 // Analyze text with Gemini
 export const analyzeText = async (text: string): Promise<GeminiResponse> => {
   try {
+    console.log("Analyzing text with Gemini:", text);
+    
     const prompt = `
       Please analyze this news content and determine if it appears to be real or fake news.
       Consider factors such as source credibility, language used, emotional manipulation, factual consistency, and verifiable claims.
@@ -85,10 +87,13 @@ export const analyzeText = async (text: string): Promise<GeminiResponse> => {
     });
 
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`API request failed with status: ${response.status}`, errorText);
       throw new Error(`API request failed with status: ${response.status}`);
     }
 
     const data = await response.json();
+    console.log("Received data from Gemini API:", data);
     
     if (data.candidates && data.candidates.length > 0 && 
         data.candidates[0].content && data.candidates[0].content.parts && 
@@ -96,6 +101,7 @@ export const analyzeText = async (text: string): Promise<GeminiResponse> => {
       const generatedText = data.candidates[0].content.parts[0].text;
       return interpretResponse(generatedText);
     } else {
+      console.error("Invalid response structure from Gemini API:", data);
       throw new Error("No valid response from Gemini API");
     }
   } catch (error) {
@@ -113,6 +119,8 @@ export const analyzeText = async (text: string): Promise<GeminiResponse> => {
 // Chat with Gemini AI
 export const chatWithGemini = async (message: string): Promise<string> => {
   try {
+    console.log("Chatting with Gemini:", message);
+    
     const prompt = `
       You are a helpful AI assistant specialized in detecting fake news and misinformation.
       If the user asks about a news story or shares content, analyze it for credibility.
@@ -146,16 +154,20 @@ export const chatWithGemini = async (message: string): Promise<string> => {
     });
 
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`API request failed with status: ${response.status}`, errorText);
       throw new Error(`API request failed with status: ${response.status}`);
     }
 
     const data = await response.json();
+    console.log("Received data from Gemini API:", data);
     
     if (data.candidates && data.candidates.length > 0 && 
         data.candidates[0].content && data.candidates[0].content.parts && 
         data.candidates[0].content.parts.length > 0) {
       return data.candidates[0].content.parts[0].text;
     } else {
+      console.error("Invalid response structure from Gemini API:", data);
       throw new Error("No valid response from Gemini API");
     }
   } catch (error) {
