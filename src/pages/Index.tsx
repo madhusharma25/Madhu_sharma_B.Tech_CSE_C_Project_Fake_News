@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { Newspaper, ShieldCheck, AlertTriangle, MessageCircleQuestion, FileUpload } from "lucide-react";
+import { Newspaper, ShieldCheck, AlertTriangle, MessageCircleQuestion, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -32,7 +32,7 @@ const Index = () => {
                 </Button>
                 <Button asChild variant="outline">
                   <Link to="/upload">
-                    <FileUpload className="mr-2" />
+                    <Upload className="mr-2" />
                     Upload News
                   </Link>
                 </Button>
@@ -74,7 +74,7 @@ const Index = () => {
           <Card className="transform hover:-translate-y-1 transition-transform duration-300">
             <CardContent className="pt-6 text-center">
               <div className="bg-chaos rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <FileUpload size={32} className="text-white" />
+                <Upload size={32} className="text-white" />
               </div>
               <h3 className="text-xl font-bold mb-2">Upload & Analyze</h3>
               <p className="text-gray-600">

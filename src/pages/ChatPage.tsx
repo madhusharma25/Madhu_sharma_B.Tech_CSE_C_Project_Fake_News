@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
-import { Robot, User, Send } from "lucide-react";
+import { Bot, User, Send } from "lucide-react";
 import { chatWithGemini } from "@/services/geminiService";
 import { toast } from "sonner";
 
@@ -98,7 +98,7 @@ const ChatPage = () => {
                       {message.sender === 'user' ? (
                         <User size={16} className="mr-2" />
                       ) : (
-                        <Robot size={16} className="mr-2" />
+                        <Bot size={16} className="mr-2" />
                       )}
                       <span className="text-xs text-gray-500">
                         {message.sender === 'user' ? 'You' : 'AI Assistant'} • {message.timestamp.toLocaleTimeString()}
@@ -112,7 +112,7 @@ const ChatPage = () => {
                 <div className="flex justify-start mb-4">
                   <div className="bg-newsprint-light border border-newsprint-medium max-w-[80%] p-3 rounded-lg">
                     <div className="flex items-center">
-                      <Robot size={16} className="mr-2" />
+                      <Bot size={16} className="mr-2" />
                       <span className="text-xs text-gray-500">AI Assistant</span>
                     </div>
                     <div className="mt-2 flex space-x-2">

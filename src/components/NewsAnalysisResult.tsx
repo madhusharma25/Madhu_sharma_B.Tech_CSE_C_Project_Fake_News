@@ -33,6 +33,8 @@ const NewsAnalysisResult: React.FC<NewsAnalysisResultProps> = ({ result, isLoadi
   }
 
   const confidenceScore = result.confidenceScore || 50;
+  const progressClassName = result.isFake ? "bg-chaos/30" : "bg-green-500/30";
+  const indicatorClassName = result.isFake ? "bg-chaos" : "bg-green-500";
 
   return (
     <Card className={`w-full mt-6 border-4 ${
@@ -63,10 +65,7 @@ const NewsAnalysisResult: React.FC<NewsAnalysisResultProps> = ({ result, isLoadi
         </div>
         <Progress 
           value={confidenceScore} 
-          className={`h-2 ${
-            result.isFake ? "bg-chaos/30" : "bg-green-500/30"
-          }`} 
-          indicatorClassName={result.isFake ? "bg-chaos" : "bg-green-500"} 
+          className={`h-2 ${progressClassName}`}
         />
       </CardHeader>
       <CardContent className="pt-6">

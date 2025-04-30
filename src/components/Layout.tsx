@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { Newspaper, MessageCircleQuestion, FileUpload } from "lucide-react";
+import { Newspaper, MessageCircleQuestion, Upload } from "lucide-react";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -36,7 +36,7 @@ const Layout = ({ children }: LayoutProps) => {
               </li>
               <li>
                 <Link to="/upload" className="hover:text-chaos-orange transition-colors flex items-center">
-                  <FileUpload size={18} className="mr-1" />
+                  <Upload size={18} className="mr-1" />
                   Upload News
                 </Link>
               </li>
