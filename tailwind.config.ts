@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -24,6 +25,23 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				chaos: {
+					DEFAULT: '#ea384c', // Red for urgency
+					orange: '#F97316', // Bright orange for attention
+					pink: '#D946EF', // Magenta pink for shock value
+					dark: '#1A1F2C', // Dark purple for unease
+				},
+				peace: {
+					DEFAULT: '#F2FCE2', // Soft green for balance
+					blue: '#D3E4FD', // Soft blue for calmness
+					gray: '#F1F0FB', // Soft gray for neutrality
+				},
+				newsprint: {
+					DEFAULT: '#222222', // Dark gray
+					light: '#f3f3f3', // Light gray
+					medium: '#888888', // Medium gray
+					dark: '#000000', // Black
+				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -63,6 +81,13 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				}
 			},
+			backgroundImage: {
+				'newspaper-texture': "url('/newspaper-texture.png')",
+			},
+			fontFamily: {
+				'cutout': ['Impact', 'sans-serif'],
+				'serif': ['Georgia', 'serif'],
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
@@ -84,11 +109,16 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'paper-float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5px)' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'paper-float': 'paper-float 3s ease-in-out infinite',
 			}
 		}
 	},

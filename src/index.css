@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -98,4 +99,23 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Cutout effect styling */
+.cutout-text {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  transform: rotate(-1deg);
+  display: inline-block;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.truth {
+  @apply bg-peace-blue text-newsprint font-cutout;
+}
+
+.chaos {
+  @apply bg-chaos text-white font-cutout;
 }
